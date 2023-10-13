@@ -50,3 +50,4 @@ while running:
     pygame.display.update()
 pygame.quit() #when the loop ends it closes the window
 #heyo
+#test
