@@ -63,14 +63,21 @@ def initOptionIcons():
     # icon #3 - new request - plus sign
 
     pygame.draw.circle(win, (0, 0, 0), (270, 900), 35, width=4)
-    pygame.draw.rect(win, (0, 0, 0), ((270 - 2, 900 - 25), (4, 50)),
-                     border_radius=2)  # -2 and -25 are used to position lines to centered in the circle
+    pygame.draw.rect(win, (0, 0, 0), ((270 - 2, 900 - 25), (4, 50)),border_radius=2)  # -2 and -25 are used to position lines to centered in the circle
     pygame.draw.rect(win, (0, 0, 0), ((270 - 25, 900 - 2), (50, 4)), border_radius=2)
 
     # icon #4 -
-    pygame.draw.circle(win, (0, 0, 0), (370, 900), 35, width=4)
+    #pygame.draw.circle(win, (0, 0, 0), (370, 900), 35, width=4)
+    pygame.draw.rect(win, (0, 0, 0), ((370 - 5, 900-5), (25, 35)), border_radius=2)
+
+    pygame.draw.rect(win, (250,250,250), ((370 - 24, 900 - 25), (32, 46)), border_radius=2, width=2)
+    pygame.draw.rect(win, (0, 0, 0), ((370 - 20, 900 - 21), (26, 40)), border_radius=2)
+
     # icon #5 - account settings
-    pygame.draw.circle(win, (0, 0, 0), (470, 900), 35, width=4)
+    pygame.draw.circle(win, (0, 0, 0), (470, 900), 22)
+    pygame.draw.circle(win, (250, 250, 250), (470, 900+20), 15)
+    pygame.draw.circle(win, (250, 250, 250), (470, 900 - 6), 7)
+    pygame.draw.circle(win, (0, 0, 0), (470, 900), 22, width = 4)
 
 
 win.fill((250, 250, 250))
