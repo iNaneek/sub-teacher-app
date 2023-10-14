@@ -68,9 +68,14 @@ def initOptionIcons():
     pygame.draw.rect(win, (0, 0, 0), ((270 - 25, 900 - 2), (50, 4)), border_radius=2)
 
     # icon #4 -
-    pygame.draw.circle(win, (0, 0, 0), (370, 900), 35, width=4)
+    #pygame.draw.circle(win, (0, 0, 0), (370, 900), 35, width=4)
+
+
     # icon #5 - account settings
-    pygame.draw.circle(win, (0, 0, 0), (470, 900), 35, width=4)
+    pygame.draw.circle(win, (0, 0, 0), (470, 900), 22)
+    pygame.draw.circle(win, (250, 250, 250), (470, 900+20), 15)
+    pygame.draw.circle(win, (250, 250, 250), (470, 900 - 6), 7)
+    pygame.draw.circle(win, (0, 0, 0), (470, 900), 22, width = 4)
 
 
 win.fill((250, 250, 250))
