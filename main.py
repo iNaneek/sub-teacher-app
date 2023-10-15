@@ -1,13 +1,13 @@
 import pygame
 
-pygame.font.init()  # initializes fonts
 pygame.init()
 
-
-win = pygame.display.set_mode((540, 960))  # window size - 1080p but halved to make it fit. iphone 15 is only 1179 so 1080 is about right for most phones
+width, height = 540, 960
+win = pygame.display.set_mode((width,
+                               height))  # window size - 1080p but halved to make it fit. iphone 15 is only 1179 so 1080 is about right for most phones
 pygame.display.set_caption("Teacher app thing")  # window title - to be changed
-testFont = pygame.font.Font(None, 50)  # defines font style
 
+testFont = pygame.font.Font(None, 50)  # defines font style
 
 
 def demoRectangles():
@@ -21,6 +21,7 @@ def demoRectangles():
 
     pygame.draw.rect(win, (0, 0, 0), ((15, 130), (75, 50)), width=5)
     # rect(window, color in rgb, ((xpos top left, ypostopleft), (x-width, y-height)), side width = x)
+
 
 def initOptionIcons():
     # following are stationary shapes that will always be present on the bottom of the screen
@@ -39,8 +40,8 @@ def initOptionIcons():
         (70 - 25, 900 + 20), (70 - 25, 900 - 10), (70, 900 - 30), (70 + 25, 900 - 10), (70 + 25, 900 + 20),
         (70 + 5, 900 + 20), (70 + 5, 900 + 10), (70 - 6, 900 + 10), (70 - 6, 900 + 20)))
     pygame.draw.aalines(win, (0, 0, 0), True, (
-    (70 - 25, 900 + 20), (70 - 25, 900 - 10), (70, 900 - 30), (70 + 25, 900 - 10), (70 + 25, 900 + 20),
-    (70 + 5, 900 + 20), (70 + 5, 900 + 10), (70 - 6, 900 + 10), (70 - 6, 900 + 20)), blend=5)
+        (70 - 25, 900 + 20), (70 - 25, 900 - 10), (70, 900 - 30), (70 + 25, 900 - 10), (70 + 25, 900 + 20),
+        (70 + 5, 900 + 20), (70 + 5, 900 + 10), (70 - 6, 900 + 10), (70 - 6, 900 + 20)), blend=5)
     # aalines smoothens surfaces
 
     pygame.draw.circle(win, (250, 250, 250), (70, 910), 5)
@@ -63,25 +64,92 @@ def initOptionIcons():
     # icon #3 - new request - plus sign
 
     pygame.draw.circle(win, (0, 0, 0), (270, 900), 35, width=4)
-    pygame.draw.rect(win, (0, 0, 0), ((270 - 2, 900 - 25), (4, 50)),border_radius=2)  # -2 and -25 are used to position lines to centered in the circle
+    pygame.draw.rect(win, (0, 0, 0), ((270 - 2, 900 - 25), (4, 50)),
+                     border_radius=2)  # -2 and -25 are used to position lines to centered in the circle
     pygame.draw.rect(win, (0, 0, 0), ((270 - 25, 900 - 2), (50, 4)), border_radius=2)
 
     # icon #4 -
-    #pygame.draw.circle(win, (0, 0, 0), (370, 900), 35, width=4)
-    pygame.draw.rect(win, (0, 0, 0), ((370 - 5, 900-5), (25, 35)), border_radius=2)
+    # pygame.draw.circle(win, (0, 0, 0), (370, 900), 35, width=4)
+    pygame.draw.rect(win, (0, 0, 0), ((370 - 5, 900 - 5), (25, 35)), border_radius=2)
 
-    pygame.draw.rect(win, (250,250,250), ((370 - 24, 900 - 25), (32, 46)), border_radius=2, width=2)
+    pygame.draw.rect(win, (250, 250, 250), ((370 - 24, 900 - 25), (32, 46)), border_radius=2, width=2)
     pygame.draw.rect(win, (0, 0, 0), ((370 - 20, 900 - 21), (26, 40)), border_radius=2)
 
     # icon #5 - account settings
     pygame.draw.circle(win, (0, 0, 0), (470, 900), 22)
-    pygame.draw.circle(win, (250, 250, 250), (470, 900+20), 15)
+    pygame.draw.circle(win, (250, 250, 250), (470, 900 + 20), 15)
     pygame.draw.circle(win, (250, 250, 250), (470, 900 - 6), 7)
-    pygame.draw.circle(win, (0, 0, 0), (470, 900), 22, width = 4)
+    pygame.draw.circle(win, (0, 0, 0), (470, 900), 22, width=4)
 
 
+def iconEvents():
+    mouseEvents = pygame.mouse.get_pressed()  # returns tuple of mouse events for each button
+    # ex. : (True, False, False) for left click (Left click, Middle click, Right click)
+
+    # following is only used to represent pushed mouse buttons as red/black squares
+    # print(list)
+    pygame.draw.rect(win, (255, 0, 0), ((20, 20), (30, 30)))
+    if mouseEvents[0] == True:
+        pygame.draw.rect(win, (0, 0, 0), ((20, 20), (30, 30)))
+
+    pygame.draw.rect(win, (255, 0, 0), ((60, 20), (30, 30)))
+    if mouseEvents[1] == True:
+        pygame.draw.rect(win, (0, 0, 0), ((60, 20), (30, 30)))
+
+    pygame.draw.rect(win, (255, 0, 0), ((100, 20), (30, 30)))
+    if mouseEvents[2] == True:
+        pygame.draw.rect(win, (0, 0, 0), ((100, 20), (30, 30)))
+
+    # finds when bottom icons pressed
+    if mouseEvents[0]:
+        mousePos = pygame.mouse.get_pos()
+        if 865 < mousePos[1] < 935:
+            if 35 < mousePos[0] < 105:
+                return 1
+            if 135 < mousePos[0] < 205:
+                return 2
+            if 235 < mousePos[0] < 305:
+                return 3
+            if 335 < mousePos[0] < 405:
+                return 4
+            if 435 < mousePos[0] < 505:
+                return 5
+
+def screen1():
+    win.blit(testFont.render('---1---', True, (0, 0, 0)), (50, 100))
+
+def screen2():
+    win.blit(testFont.render('---2---', True, (0, 0, 0)), (50, 100))
+
+def screen3():
+    win.blit(testFont.render('---3---', True, (0, 0, 0)), (50, 100))
+
+def screen4():
+    win.blit(testFont.render('---4---', True, (0, 0, 0)), (50, 100))
+
+def screen5():
+    win.blit(testFont.render('---5---', True, (0, 0, 0)), (50, 100))
+
+
+
+def printScreen1to5(currentScreen):
+    if currentScreen == 1:
+        screen1()
+    if currentScreen == 2:
+        screen2()
+    if currentScreen == 3:
+        screen3()
+    if currentScreen == 4:
+        screen4()
+    if currentScreen == 5:
+        screen5()
+
+
+
+currentScreen = 1
 win.fill((250, 250, 250))
 initOptionIcons()
+pygame.mouse.set_cursor(pygame.cursors.arrow)  # messes with mouse style
 
 running = True
 while running:
@@ -91,17 +159,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    keys = pygame.key.get_pressed()  # all pressed keys
-
     pygame.draw.rect(win, (250, 250, 250), ((0, 0), (540, 840)))
+    pressedIcon = iconEvents()
+    if pressedIcon:  # not directly defining currentScreen because it can return 'None'
+        currentScreen = pressedIcon
+    printScreen1to5(currentScreen)
 
 
-
-    pygame.mouse.set_cursor(pygame.cursors.arrow)  # messes with mouse style
-
-
-
-
+    keys = pygame.key.get_pressed()  # all pressed keys
     if keys[pygame.K_SPACE]:
         pass  # key input for space bar. K_a, K_b, K_c etc
 
