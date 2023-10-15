@@ -116,19 +116,19 @@ def iconEvents():
                 return 5
 
 def screen1():
-    win.blit(testFont.render('---1---', True, (0, 0, 0)), (50, 100))
+    win.blit(testFont.render('---1---', True, (0, 0, 0)), (150, 18))
 
 def screen2():
-    win.blit(testFont.render('---2---', True, (0, 0, 0)), (50, 100))
+    win.blit(testFont.render('---2---', True, (0, 0, 0)), (150, 18))
 
 def screen3():
-    win.blit(testFont.render('---3---', True, (0, 0, 0)), (50, 100))
+    win.blit(testFont.render('---3---', True, (0, 0, 0)), (150, 18))
 
 def screen4():
-    win.blit(testFont.render('---4---', True, (0, 0, 0)), (50, 100))
+    win.blit(testFont.render('---4---', True, (0, 0, 0)), (150, 18))
 
 def screen5():
-    win.blit(testFont.render('---5---', True, (0, 0, 0)), (50, 100))
+    win.blit(testFont.render('---5---', True, (0, 0, 0)), (150, 18))
 
 
 
