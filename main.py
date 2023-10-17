@@ -2,13 +2,13 @@ import pygame
 
 pygame.init()
 
-width, height = 540, 960
-win = pygame.display.set_mode((width,
-                               height))  # window size - 1080p but halved to make it fit. iphone 15 is only 1179 so 1080 is about right for most phones
+width, height = 540, 940
+# window size - 1080p but halved to make it fit. iphone 15 is only 1179 so 1080 is about right for most phones
+win = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Teacher app thing")  # window title - to be changed
 
-testFont = pygame.font.Font(None, 50)  # defines font style
-
+testingFont = pygame.font.Font(None, 50)  # defines font style
+font1 = pygame.font.Font(None, 25)
 
 def demoRectangles():
     # This makes the rectangles on screen
@@ -115,35 +115,50 @@ def iconEvents():
             if 435 < mousePos[0] < 505:
                 return 5
 
+
 def screen1():
-    win.blit(testFont.render('---1---', True, (0, 0, 0)), (150, 18))
+    win.blit(testingFont.render('---1---', True, (0, 0, 0)), (150, 18))
+
 
 def screen2():
-    win.blit(testFont.render('---2---', True, (0, 0, 0)), (150, 18))
+    win.blit(testingFont.render('---2---', True, (0, 0, 0)), (150, 18))
+
 
 def screen3():
-    win.blit(testFont.render('---3---', True, (0, 0, 0)), (150, 18))
+    win.blit(testingFont.render('---3---', True, (0, 0, 0)), (150, 18))
+
 
 def screen4():
-    win.blit(testFont.render('---4---', True, (0, 0, 0)), (150, 18))
+    win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
+
+
+tchrAccounts = [  # ['name', 'grade', 'district', 'school', 'years joined (int)', ]
+    ['name', 'grade', 'district', 'school', ]
+]
+subAccounts = [
+    []
+]
+#```
 
 def screen5():
-    win.blit(testFont.render('---5---', True, (0, 0, 0)), (150, 18))
+    win.blit(testingFont.render('---5---', True, (0, 0, 0)), (150, 18))
 
-
-
+lookup = {1: screen1, 2: screen2, 3: screen3, 4: screen4, 5: screen5}
 def printScreen1to5(currentScreen):
+    print(currentScreen)
+    lookup[currentScreen]()
+    '''
     if currentScreen == 1:
         screen1()
-    if currentScreen == 2:
+    elif currentScreen == 2:
         screen2()
-    if currentScreen == 3:
+    elif currentScreen == 3:
         screen3()
-    if currentScreen == 4:
+    elif currentScreen == 4:
         screen4()
-    if currentScreen == 5:
+    elif currentScreen == 5:
         screen5()
-
+    '''
 
 
 currentScreen = 1
@@ -164,7 +179,6 @@ while running:
     if pressedIcon:  # not directly defining currentScreen because it can return 'None'
         currentScreen = pressedIcon
     printScreen1to5(currentScreen)
-
 
     keys = pygame.key.get_pressed()  # all pressed keys
     if keys[pygame.K_SPACE]:
