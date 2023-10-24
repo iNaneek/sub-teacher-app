@@ -10,7 +10,7 @@ pygame.display.set_caption("Teacher app thing")  # window title - to be changed
 testingFont = pygame.font.Font(None, 50)  # defines font style
 font1 = pygame.font.Font(None, 25)
 
-demoPic =  pygame.image.load('200x200.png')
+demoPic =  pygame.image.load('photos/200x200.png')
 
 
 
