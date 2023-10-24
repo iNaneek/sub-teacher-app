@@ -10,8 +10,9 @@ pygame.display.set_caption("Teacher app thing")  # window title - to be changed
 testingFont = pygame.font.Font(None, 50)  # defines font style
 font1 = pygame.font.Font(None, 25)
 
-demoPic =  pygame.image.load('photos/200x200.png')
-
+try:
+    demoPic = pygame.image.load('photos/200x200.png')
+except: pass
 
 
 
@@ -121,6 +122,8 @@ def iconEvents():
                 return 5
 
 
+keys = pygame.key.get_pressed()  # all pressed keys
+
 def screen1():
     win.blit(testingFont.render('---1---', True, (0, 0, 0)), (150, 18))
 
@@ -132,9 +135,34 @@ def screen2():
 def screen3():
     win.blit(testingFont.render('---3---', True, (0, 0, 0)), (150, 18))
 
-
+frameNum = 0 #used for swiping on screen 4 over multiple
 def screen4():
-    win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
+    global frameNum
+    #win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
+    pygame.draw.rect(win, (220, 220, 220), ((3 + frameNum, 5), (540-6, 835)), border_radius=50)
+    if keys[pygame.K_LEFT]:
+        pygame.draw.rect(win, (250, 0, 0), ((3 + frameNum, 5), (540-6, 835)), border_radius=50)
+        frameNum = -2
+    if keys[pygame.K_RIGHT]:
+        pygame.draw.rect(win, (0, 250, 0), ((3 + frameNum, 5), (540-6, 835)), border_radius=50)
+        frameNum = 2
+
+
+    if frameNum < 0:
+        frameNum -= 8
+        pygame.draw.rect(win, (250, 0, 0), ((3 + frameNum, 5), (540-6, 835)), border_radius=50)
+
+    if frameNum > 0:
+        frameNum += 8
+        pygame.draw.rect(win, (0, 250, 0), ((3 + frameNum, 5), (540-6, 835)), border_radius=50)
+
+    if abs(frameNum) > 300:
+        frameNum = 0
+    pygame.draw.rect(win, (0, 0, 0), ((3 + frameNum, 5), (540-6, 835)), border_radius=50, width=5)
+    pygame.draw.rect(win, (255, 255, 255), ((20 + frameNum, 25), (500 - 6, 500)), border_radius=35)
+
+
+
 
 
 tchrAcnts = [  # ['name', 'grade', 'district', 'school', 'years joined (int)', ]
@@ -147,11 +175,13 @@ subAcnts = [
 
 def screen5():
     win.blit(testingFont.render('---5---', True, (0, 0, 0)), (150, 18))
-    win.blit(demoPic, (50, 50))
+    try:
+        win.blit(demoPic, (50, 50))
+    except: pass
 
 lookup = {1: screen1, 2: screen2, 3: screen3, 4: screen4, 5: screen5}
 def printScreen1to5(currentScreen):
-    print(currentScreen)
+    #print(currentScreen)
     lookup[currentScreen]()
 
 
