@@ -10,6 +10,11 @@ pygame.display.set_caption("Teacher app thing")  # window title - to be changed
 testingFont = pygame.font.Font(None, 50)  # defines font style
 font1 = pygame.font.Font(None, 25)
 
+demoPic =  pygame.image.load('200x200.png')
+
+
+
+
 def demoRectangles():
     # This makes the rectangles on screen
 
@@ -132,33 +137,22 @@ def screen4():
     win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
 
 
-tchrAccounts = [  # ['name', 'grade', 'district', 'school', 'years joined (int)', ]
+tchrAcnts = [  # ['name', 'grade', 'district', 'school', 'years joined (int)', ]
     ['name', 'grade', 'district', 'school', ]
 ]
-subAccounts = [
+subAcnts = [
     []
 ]
-#```
+
 
 def screen5():
     win.blit(testingFont.render('---5---', True, (0, 0, 0)), (150, 18))
+    win.blit(demoPic, (50, 50))
 
 lookup = {1: screen1, 2: screen2, 3: screen3, 4: screen4, 5: screen5}
 def printScreen1to5(currentScreen):
     print(currentScreen)
     lookup[currentScreen]()
-    '''
-    if currentScreen == 1:
-        screen1()
-    elif currentScreen == 2:
-        screen2()
-    elif currentScreen == 3:
-        screen3()
-    elif currentScreen == 4:
-        screen4()
-    elif currentScreen == 5:
-        screen5()
-    '''
 
 
 currentScreen = 1
