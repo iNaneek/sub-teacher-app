@@ -1,4 +1,5 @@
 import pygame
+import names
 
 pygame.init()
 
@@ -8,9 +9,9 @@ win = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Teacher app thing")  # window title - to be changed
 
 testingFont = pygame.font.Font(None, 50)  # defines font style
-font1 = pygame.font.Font(None, 25)
+nameFont = pygame.font.Font(None, 40)
+cardFont = pygame.font.Font(None, 25)
 
-demoPic =  pygame.image.load('200x200.png')
 
 
 
@@ -88,6 +89,7 @@ def initOptionIcons():
 
 
 def iconEvents():
+    mousePos = pygame.mouse.get_pos()
     mouseEvents = pygame.mouse.get_pressed()  # returns tuple of mouse events for each button
     # ex. : (True, False, False) for left click (Left click, Middle click, Right click)
 
@@ -121,6 +123,8 @@ def iconEvents():
                 return 5
 
 
+keys = pygame.key.get_pressed()  # all pressed keys
+
 def screen1():
     win.blit(testingFont.render('---1---', True, (0, 0, 0)), (150, 18))
 
@@ -132,9 +136,57 @@ def screen2():
 def screen3():
     win.blit(testingFont.render('---3---', True, (0, 0, 0)), (150, 18))
 
-
+frameNum = 0 #used for swiping on screen 4 over multiple
+accounts = names.makeNames() #calls from names.py
+currentAccount = 0 #the card being viewed in list accounts
 def screen4():
-    win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
+    #win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
+    global currentAccount
+    global frameNum
+
+    cirRad = 65
+
+    mousePos = pygame.mouse.get_pos()
+    mouseEvents = pygame.mouse.get_pressed()
+    pygame.draw.circle(win, (0, 255, 0), (360, 700), cirRad)
+    pygame.draw.circle(win, (255, 0, 0), (180, 700), cirRad)
+    pygame.draw.circle(win, (0, 0, 0), (360, 700), cirRad, width=5)
+    pygame.draw.circle(win, (0, 0, 0), (180, 700), cirRad, width=5)
+
+    if mouseEvents[0]:
+        if 700-cirRad < mousePos[1] < 700+cirRad:
+            if 180 - cirRad < mousePos[0] < 180 + cirRad and frameNum == 0:
+                frameNum = -1
+            if 360 - cirRad < mousePos[0] < 360 + cirRad and frameNum == 0:
+                frameNum = 1
+
+    if keys[pygame.K_LEFT] and frameNum == 0:
+        frameNum = -1
+    if keys[pygame.K_RIGHT] and frameNum == 0:
+        frameNum = 1
+
+    if frameNum < 0:
+        frameNum -= 10
+
+    if frameNum > 0:
+        frameNum += 10
+
+    if abs(frameNum) > 450:
+        frameNum = 0
+        currentAccount += 1
+        currentAccount = currentAccount % len(accounts) #resets at end of list
+
+    pygame.draw.rect(win, (130, 130, 130), ((3 + frameNum, 5), (540 - 6, 600)), border_radius=50)
+    pygame.draw.rect(win, (0, 0, 0), ((3 + frameNum, 5), (540-6, 600)), border_radius=50, width=4)
+    #pygame.draw.rect(win, (255, 255, 255), ((20 + frameNum, 25), (500, 500)), border_radius=35)
+
+    win.blit(nameFont.render(accounts[currentAccount][0], True, (255, 255, 255)), (40 + frameNum, 540))
+    win.blit(cardFont.render(accounts[currentAccount][1], True, (255, 255, 255)), (40 + frameNum, 570))
+    win.blit(cardFont.render(accounts[currentAccount][2], True, (255, 255, 255)), (280 + frameNum, 550))
+    win.blit(cardFont.render(accounts[currentAccount][3], True, (255, 255, 255)), (280 + frameNum, 570))
+    try:
+        win.blit(accounts[currentAccount][4], (20 + frameNum, 45))
+    except: pass
 
 
 tchrAcnts = [  # ['name', 'grade', 'district', 'school', 'years joined (int)', ]
@@ -147,11 +199,14 @@ subAcnts = [
 
 def screen5():
     win.blit(testingFont.render('---5---', True, (0, 0, 0)), (150, 18))
-    win.blit(demoPic, (50, 50))
+    try:
+        win.blit(names.drawDemoPic(), (170, 100))
+    except: pass
+
 
 lookup = {1: screen1, 2: screen2, 3: screen3, 4: screen4, 5: screen5}
 def printScreen1to5(currentScreen):
-    print(currentScreen)
+    #print(currentScreen)
     lookup[currentScreen]()
 
 
