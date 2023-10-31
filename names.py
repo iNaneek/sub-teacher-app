@@ -8,7 +8,11 @@ try:
     bigPic4 = pygame.transform.scale(pygame.image.load('photos/CA - 4.jpg'), (500, 475))
     bigPic5 = pygame.transform.scale(pygame.image.load('photos/CA - 5.jpg'), (500, 475))
 
-
+    lilPic1 = pygame.transform.scale(pygame.image.load('photos/trumpshot.jpg'), (20, 20))
+    lilPic2 = pygame.transform.scale(pygame.image.load('photos/CA - 2.jpg'), (20, 20))
+    lilPic3 = pygame.transform.scale(pygame.image.load('photos/CA - 3.jpg'), (20, 20))
+    lilPic4 = pygame.transform.scale(pygame.image.load('photos/CA - 4.jpg'), (20, 20))
+    lilPic5 = pygame.transform.scale(pygame.image.load('photos/CA - 5.jpg'), (20, 20))
 
 
 except: pass
@@ -22,7 +26,7 @@ def makeNames():
         ["Samantha Pine", "8th grade", "12/5", "NWHS", bigPic2],
         ["Emree Smith", "12th grade", "11/09", "BHS", bigPic3],
         ["Sasha Bruins", "10th grade", "11/25", "MVHS", bigPic5],
-        ["Candace Fields", "9th grade", "11/28", "LPHS", bigPic4]
+        ["Candace Fields", "9th grade", "11/28", "LPHS", bigPic4],
     ]
     return accounts
 
@@ -31,8 +35,12 @@ def drawDemoPic():
 
 def listOfChats():
     chats = [ # name, last chat, account photo
-        [],
-        [],
-        []
+        ["Emree Smith", "Sounds good!", lilPic1],
+        ["Wyatt Steel", "It was so fun seeing your class", lilPic1],
+        ["Adam Wixom", "Looking forward to subbing!", lilPic1],
+        ["Ethan Shelton", "Donald was a little shit", lilPic1],
+        ["Liam Cavalari", "Your class was a joy!", lilPic1],
+        ["", "", lilPic1]
+
     ]
     return chats

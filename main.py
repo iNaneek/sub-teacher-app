@@ -100,23 +100,27 @@ def iconEvents():
 keys = pygame.key.get_pressed()  # all pressed keys
 
 def screen1():
-    win.blit(testingFont.render('---1---', True, (0, 0, 0)), (150, 18))
+    pass
+    #win.blit(testingFont.render('---1---', True, (0, 0, 0)), (150, 18))
 
 chats = names.listOfChats()
 def screen2():
-    win.blit(testingFont.render('---2---', True, (0, 0, 0)), (150, 18))
+    #win.blit(testingFont.render('---2---', True, (0, 0, 0)), (150, 18))
     j = 0
     for i in chats:
         pygame.draw.rect(win, (0, 0, 0), ((0, j*50), (540, 1)))
         j += 1
 
+
+screen3image = pygame.transform.scale(pygame.image.load('photos/post_page_lol.png'), (540, 840))
 def screen3():
-    win.blit(testingFont.render('---3---', True, (0, 0, 0)), (150, 18))
+    win.blit(screen3image, (0, 0))
+
+
 
 frameNum = 0 #used for swiping on screen 4 over multiple
 accounts = names.makeNames() #calls from names.py
 currentAccount = 0 #the card being viewed in list accounts
-
 
 def screen4():
     #win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
