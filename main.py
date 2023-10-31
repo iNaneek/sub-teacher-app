@@ -104,6 +104,7 @@ def screen1():
     pass
     #win.blit(testingFont.render('---1---', True, (0, 0, 0)), (150, 18))
 
+screen3message = pygame.transform.scale(pygame.image.load('photos/messages.png'), (540, 840))
 chats = names.listOfChats()
 def screen2():
     #win.blit(testingFont.render('---2---', True, (0, 0, 0)), (150, 18))
@@ -117,7 +118,9 @@ def screen2():
         except:
             pass
         j += 1
-
+    if keys[pygame.K_SPACE]:
+        o = 1
+        win.blit(screen3message, (0, 0))
 
 screen3image = pygame.transform.scale(pygame.image.load('photos/post_page_lol.png'), (540, 840))
 def screen3():
