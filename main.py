@@ -80,17 +80,6 @@ def iconEvents():
 
     # following is only used to represent pushed mouse buttons as red/black squares
     # print(list)
-    pygame.draw.rect(win, (255, 0, 0), ((20, 20), (30, 30)))
-    if mouseEvents[0] == True:
-        pygame.draw.rect(win, (0, 0, 0), ((20, 20), (30, 30)))
-
-    pygame.draw.rect(win, (255, 0, 0), ((60, 20), (30, 30)))
-    if mouseEvents[1] == True:
-        pygame.draw.rect(win, (0, 0, 0), ((60, 20), (30, 30)))
-
-    pygame.draw.rect(win, (255, 0, 0), ((100, 20), (30, 30)))
-    if mouseEvents[2] == True:
-        pygame.draw.rect(win, (0, 0, 0), ((100, 20), (30, 30)))
 
     # finds when bottom icons pressed
     if mouseEvents[0]:
@@ -113,10 +102,13 @@ keys = pygame.key.get_pressed()  # all pressed keys
 def screen1():
     win.blit(testingFont.render('---1---', True, (0, 0, 0)), (150, 18))
 
-
+chats = names.listOfChats()
 def screen2():
     win.blit(testingFont.render('---2---', True, (0, 0, 0)), (150, 18))
-
+    j = 0
+    for i in chats:
+        pygame.draw.rect(win, (0, 0, 0), ((0, j*50), (540, 1)))
+        j += 1
 
 def screen3():
     win.blit(testingFont.render('---3---', True, (0, 0, 0)), (150, 18))
@@ -124,6 +116,8 @@ def screen3():
 frameNum = 0 #used for swiping on screen 4 over multiple
 accounts = names.makeNames() #calls from names.py
 currentAccount = 0 #the card being viewed in list accounts
+
+
 def screen4():
     #win.blit(testingFont.render('---4---', True, (0, 0, 0)), (150, 18))
     global currentAccount
