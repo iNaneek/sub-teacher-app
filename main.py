@@ -14,21 +14,6 @@ cardFont = pygame.font.Font(None, 25)
 
 
 
-
-
-def demoRectangles():
-    # This makes the rectangles on screen
-
-    pygame.draw.rect(win, (0, 0, 0), ((15, 10), (75, 50)))
-    # rect(window, color in rgb, ((xpos top left, ypostopleft), (x-width, y-height)))
-
-    pygame.draw.rect(win, (0, 0, 0), ((15, 70), (75, 50)), border_radius=10)
-    # rect(window, color in rgb, ((xpos top left, ypostopleft), (x-width, y-height)), rounded corners = x)
-
-    pygame.draw.rect(win, (0, 0, 0), ((15, 130), (75, 50)), width=5)
-    # rect(window, color in rgb, ((xpos top left, ypostopleft), (x-width, y-height)), side width = x)
-
-
 def initOptionIcons():
     # following are stationary shapes that will always be present on the bottom of the screen
     pygame.draw.rect(win, (230, 230, 230), ((0, 840), (540, 2)))  # seperating line on the bottom
