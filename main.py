@@ -11,6 +11,7 @@ pygame.display.set_caption("Teacher app thing")  # window title - to be changed
 testingFont = pygame.font.Font(None, 50)  # defines font style
 nameFont = pygame.font.Font(None, 40)
 cardFont = pygame.font.Font(None, 25)
+lilFont = pygame.font.Font(None, 20)
 
 
 
@@ -109,6 +110,12 @@ def screen2():
     j = 0
     for i in chats:
         pygame.draw.rect(win, (0, 0, 0), ((0, j*50), (540, 1)))
+        win.blit(cardFont.render(i[0], True, (0, 0, 0)), (75, j*50 + 10))
+        win.blit(lilFont.render(i[1], True, (0, 0, 0)), (75, j * 50 + 30))
+        try:
+            win.blit(i[2], (5, j * 50 + 5))
+        except:
+            pass
         j += 1
 
 
@@ -172,19 +179,9 @@ def screen4():
     except: pass
 
 
-tchrAcnts = [  # ['name', 'grade', 'district', 'school', 'years joined (int)', ]
-    ['name', 'grade', 'district', 'school', ]
-]
-subAcnts = [
-    []
-]
-
-
+screen5image = pygame.transform.scale(pygame.image.load('photos/profile_lol.png'), (540, 840))
 def screen5():
-    win.blit(testingFont.render('---5---', True, (0, 0, 0)), (150, 18))
-    try:
-        win.blit(names.drawDemoPic(), (170, 100))
-    except: pass
+    win.blit(screen5image, (0, 0))
 
 
 lookup = {1: screen1, 2: screen2, 3: screen3, 4: screen4, 5: screen5}
